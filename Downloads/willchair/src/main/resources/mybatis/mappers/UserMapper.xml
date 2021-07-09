@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.willchair.Mapper.UserMapper">
+
+	<select id="getTotalUser" resultType="Integer">
+		select count(*) from public.user where active_yn = 'Y'
+	</select>
+	
+	<select id="getTotalAdmin" resultType="Integer">
+		select count(*) from public.user where admin_yn = 'Y'
+	</select>	
+
+	<select id="getUserList" parameterType="hashMap" resultType="UserVo">
+		select user_id
+			   , user_pass
+			   , user_name
+			   , user_pnum
+			   , user_email
+			   , memo
+			   , active_yn
+			   , admin_yn
+			   , cret_dt
+			   , cret_id
+			   , updt_dt
+			   , updt_id
+			   , latest_dt
+		from public.user
+		where 1=1
+		<if test="inq != null">
+			AND 
+			<choose>
+				<when test="con == 'name'">
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						user_name LIKE '%' || #{item} || '%'
+					</foreach>
+				</when>
+				<when test="con == 'id'">
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						user_id LIKE '%' || #{item} || '%'
+					</foreach>
+				</when>
+				<when test="con == 'mail'">
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						user_email LIKE '%' || #{item} || '%'
+					</foreach>
+				</when>
+				<otherwise>
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						user_name LIKE '%' || #{item} || '%'
+						or user_id LIKE '%' || #{item} || '%'
+						or user_email LIKE '%' || #{item} || '%'
+					</foreach>
+				</otherwise>
+			</choose>
+		</if>
+		order by cret_dt
+	</select>	
+	
+	<select id="getUserInfo" parameterType="UserVo" resultType="UserVo">
+		select user_id
+			   , user_pass
+			   , user_name
+			   , user_pnum
+			   , user_email
+			   , memo
+			   , active_yn
+			   , admin_yn
+			   , cret_dt
+			   , cret_id
+			   , updt_dt
+			   , updt_id
+			   , latest_dt
+		from public.user 
+		where 1=1
+		and user_id = #{userId}
+	</select>	
+	
+	<select id="dupCheckId" parameterType="hashMap" resultType="String">
+		select user_id
+		from public.user
+		where user_id=#{id}
+	</select>
+
+	<insert id="saveNewUser" parameterType="hashMap">
+		INSERT INTO public.user
+			(user_id
+			   , user_pass
+			   , user_name
+			   , user_pnum
+			   , user_email
+			   , memo
+			   , password_key
+			   , cret_dt
+			   , cret_id
+			   , updt_dt
+			   , updt_id
+			)VALUES(
+				#{userId}
+			   , #{userPass}
+			   , #{userName}
+			   , #{userPnum}
+			   , #{userEmail}
+			   , #{memo}
+			   , #{passwordKey}
+			   , NOW()
+			   , #{cretId}
+			   , NOW()
+			   , #{cretId}
+			)
+	</insert>
+	
+	<delete id="deleteUser" parameterType="hashMap">
+		delete from public.user
+		where user_id=#{id}
+	</delete>
+	
+	<update id="updateUser" parameterType="hashMap">
+		UPDATE public.user SET 
+	   		<if test="password != null and password != ''">
+	   	   		user_pass=#{password},
+			</if>
+	       user_name=#{name},
+		   user_pnum=#{telPhone}, 
+		   user_email=#{mail}, 
+		   memo=#{memo}, 
+		   active_yn=#{active}, 
+		   admin_yn=#{admin}, 
+		   updt_dt=NOW(),
+		   updt_id='test'
+		WHERE user_id=#{id}
+	</update>
+	
+</mapper>

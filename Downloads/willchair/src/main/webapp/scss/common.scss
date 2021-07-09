@@ -1,0 +1,325 @@
+
+$main-color:#E98B73;
+$sub-color:#F6E4C9;
+$border-color:#a8a8a8;
+
+/* 가리기 .blind */
+.blind{position:absolute; width:0; height:0; font-size:0;}
+/* 오른쪽 정렬 .fr */
+.fr{float: right;}
+/* 로고 .logo */
+.logo{
+    margin:30px auto 50px; 
+    width:181px; height:32px; font-size:0;
+    background:url(../image/logo.png) center / cover no-repeat; 
+    &_s{height:23px; background-size: auto 23px;}
+}
+/* 용어 .terms_area */
+.terms_area{
+    position:absolute; bottom:50px; 
+    a{
+        font-size:0.89em; color:#fff;
+        &:first-of-type{margin-right:3px; border-right:2px solid #fff; padding-right:6px;}
+    }
+}
+/* 보조영역 .sub_cont : 좌우 정렬 필요한 버튼 및 폼요소 포함영역 */
+.sub_cont{
+    margin:10px 0;
+    &:after{display:block; clear: both; content: "";}
+}
+/* 버튼 .btn */
+.btn{
+    // 기본 버튼 .btn
+    margin-left:8px; border-radius:8px; padding:9px 12px; min-width:80px; font-weight:700; color:$main-color; background-color:$sub-color;
+    // 전체 버튼 영역 .btn_wrap
+    &_wrap{float:right;}
+    // 실선 버튼 .btn_stroke
+    &.stroke{
+        border:3px solid $sub-color; padding:6px 12px; min-width:110px; background-color:#fff;
+        // 회색 실선 버튼
+        &_g{border-color:$border-color; padding:10px 20px; color:$border-color;}
+    }
+    &.left{margin:10px 8px 10px 0; border-color:lighten($border-color, 28%);}
+    &.form{
+        margin-left:-12px; border-radius:0 8px 8px 0; padding:11px 0; min-width:45px;
+        color:#fff; text-indent:-9999px; vertical-align:middle;
+        background:$border-color url(../image/icon.png) center no-repeat; 
+    }
+    &.att{margin-left:2px;}
+}
+
+
+// [F] main
+/* 페이지 공통 .main_ */
+.main{
+    //  .main_wrap
+    &_wrap{width:100vw; height:100vh; min-width:1300px; overflow:hidden auto;}
+    //  .main_sidebar 
+    &_sidebar{
+        position:fixed; top:0; left:0;
+        width:210px; height:100%; min-height:720px; color:#fff;
+        background-color:$main-color;
+        .terms_area{bottom:80px; left:15px; opacity:0.7;} 
+    }
+    //  .main_nav
+    &_nav{
+        .dept1{
+            display:block;
+            margin:8px 0 8px 15px; border-radius:50px 0 0 50px; padding:12px 0 12px 15px; color:#fff; 
+            &:before{
+                display:inline-block; 
+                margin-right:10px; width:20px; height:20px; content: ""; vertical-align:middle; 
+                background:center no-repeat; 
+            }
+            &.current{padding-right:40px; color:$main-color; font-weight:bold; background-color:#fff;}
+        }
+        .dept2{
+            a{
+                display:block; margin:5px 0 5px 55px; color:rgba(221, 221, 221, 0.8);
+                &:before{display:inline-block; margin-right:4px; content:"-";}
+                &.current{color:$sub-color;}
+            }
+        }
+    }
+    //  .main_out
+    &_out{
+        position:absolute; bottom:0; right:0;
+        width:100%; padding:18px 0; font-weight:700; text-align: center; color:$main-color;
+        background-color: $sub-color;
+    }
+    //  .main_container
+    &_container{
+        margin-left:210px; padding:25px; height:100vh; max-height:100vh; font-weight:700; background-color:#FCFAF8;
+        h2{margin-bottom:30px; font-size:1.333em;}
+        h3{margin-bottom:20px; font-size:1.1555em;}
+        // input 공통
+        select,input{border:1px solid $border-color; border-radius:8px; padding:8px; color:$border-color; background-color:#fff;}
+        .tabpanel{border:2px solid lighten($border-color, 28%); padding:15px;}
+    }
+    //  .main_tab
+    &_tab{
+        display:table; border-collapse:collapse; 
+        a{
+            display:inline-block; border:2px solid lighten($border-color, 28%); border-bottom-width:0;
+            width:150px; height: 50px; line-height:50px; text-align: center;
+            &.on{color:#fff; background-color:$sub-color; border-color:transparent;}
+        }
+        
+    }
+    // .main_summary 
+    &_summary{
+        display:flex; align-items:center; text-align:center; 
+        margin-bottom:25px; border:2px solid lighten($border-color, 28%); border-radius:10px; padding:15px 0; height:80px;
+        background-color:#fff;
+        dl{
+            flex-basis:33%; align-items:center; border-right:2px solid #ececec; line-height:3px;
+            &:last-of-type{border-width: 0;}
+        }
+        dt{margin-bottom:24px; font-size:1.114em; color:$main-color;}
+        //  .main_summary popup버튼
+        a{
+            display:inline-block; margin:0 auto;
+            border:2px solid $main-color; border-radius:30px; padding:12px 30px 12px 50px;
+            color:$main-color; vertical-align: middle; transition: all 0.3s; 
+            &:after{
+                display:inline-block;  
+                margin-left:30px; border-radius:50%; width:23px; height:23px; 
+                font-size:1.4em; font-weight:400; line-height:20px; color:#fff; vertical-align:middle; 
+                background-color:$main-color; content:"+"; 
+            }
+            &:hover{background-color:$main-color; color:#fff;}
+            @media screen and (max-width:1320px) {
+                padding:10px 18px;
+            }
+        }
+    }
+    //  .main_utility 
+    &_utility{
+        position:relative; height:38px; margin-bottom:12px;
+        label{margin-right:3px;}
+        
+    }
+    
+    // .main_box 
+    &_box{
+        display:flex; justify-content:space-around; flex-wrap:wrap;
+        margin-bottom:12px; 
+        section{
+            flex:1 1 calc(50% - 8px); margin-bottom:16px; border:2px solid #ececec; border-radius:10px; padding:30px 20px; 
+            &:nth-of-type(2n){margin-left:16px;}
+            &:nth-of-type(3){flex-basis:33.3333%;}
+        }
+    }
+    //  .main_content 
+    &_content{border:2px solid lighten($border-color, 28%); border-radius:10px; padding:10px 10px 5px; background-color:#fff;}
+    //  .main_filter 
+    &_filter{
+        position:relative; border-radius:7px; padding:25px; 
+        vertical-align: middle; background-color:lighten($border-color, 28%);
+        select, input{margin-left:5px; padding:12px; width:150px;}
+        input[type="checkbox"]{width:16px; height:16px; vertical-align:middle;}
+        .summary{
+            position:absolute; top:30px; right:30px;
+            @media screen and (max-width:1299px) {
+                position: relative; top:10px;
+            }
+        }
+        dl{
+            display:inline-block; 
+            margin-left:12px; border-left:2px solid lighten($border-color, 20%); padding-left:12px;
+            font-size:0.9em; text-align: center;
+            &:first-of-type{border:none;}
+        }
+        dt{color: $main-color;}
+    }
+    // .main_dashboard 
+    &_dashboard{
+        margin:8px 0; overflow: hidden;
+        .mark{
+            display: inline-block; margin-top:16px; 
+            span{margin-right:20px;}
+            dfn{vertical-align: middle;}
+            &_enough{
+                display:inline-block; 
+                border-radius:50%; width:20px; height:20px; 
+                background-color:#76d376;
+            }
+            &_short{
+                &:before, &:after{
+                    display:inline-block; position:relative; left:10px;
+                    width:3px; height:19px; transform:rotate(45deg);
+                    background-color:#f7ac4b; content: "";
+                }
+                &:after{
+                    position:relative; top:-8px; left:-1px; 
+                    width:19px; height:3px;
+                }
+            }
+        }
+        .grid_wrap{clear:both; background-color:lighten($border-color, 28%);}
+    }
+}
+// [P] login
+/* [P] 로그인 페이지 .login_ */
+.login{ 
+    //  .login_wrap 
+    &_wrap{
+        display:flex; justify-content:center; align-items:center;
+        height:100vh; background:url(../image/bg.png) center / cover no-repeat;
+        .terms_area a{
+            color:$main-color;
+            &:first-of-type{border-color:$main-color;}
+        }
+    }
+    //  .login_box 
+    &_box{
+        position:absolute; width:450px; padding:40px; box-shadow: 10px 5px 20px rgba(5, 5, 51, 0.2); border-radius:50px;
+        background-color:#fff; 
+        &:before{
+            display:block; position:absolute; top:0; left:0; 
+            border-radius: 50px 50px 0 0; width:100%; height:140px; 
+            background:linear-gradient(-45deg, $main-color, $sub-color); content:""; 
+         }
+        .logo{position:relative; margin:30px auto 60px; z-index:100;}
+        label{display:inline-block; padding-top:12px; font-weight:700; font-size:1.2em; color:$main-color;}
+        input{
+            display:block; 
+            margin:8px 0 20px; border-bottom:3px solid #333; padding-bottom:8px; width:340px; height:22px; 
+        } 
+        input[id="auto-login"]{
+            display:none; 
+            & + label{
+                display:inline-block; position:relative;
+                font-size:1em; font-weight:500; vertical-align:middle; color: #969696; cursor:pointer; 
+                &:before{
+                    display:inline-block; 
+                    margin-right:8px; border:3px solid #969696; border-radius:5px; width:16px; height:16px; vertical-align:middle;
+                    content:""; 
+                }
+                &:after{
+                    display:inline-block; position:absolute; top:18px; left:5px;
+                    border:solid #fff; border-width:3px 3px 0 0; width:8px; height:4px; transform: rotate(135deg);
+                    content:""; 
+                }
+            }
+            &:checked + label:before{background-color:$main-color; border-color:$main-color;}
+        }
+        .inquiry{margin-left:25px; font-size: 0.9em;}
+    }
+    //  .login_btn
+    &_btn{
+        display: block; 
+        margin:24px 0; border-radius:30px; width:370px; height:50px; 
+        text-transform:uppercase; letter-spacing:0.2em; color:#fff;
+        background-color:$main-color; transition:all 0.5s;
+        &:hover{box-shadow:390px 0 0 0 darken($main-color, 12%) inset; color:#fff;}
+    }
+}
+
+/* 팝업 공통 .popup_ */
+.popup{
+    position:fixed; top:0; left:0;
+    width:100%; height:100%; font-size:0.9em; 
+    background-color:rgba(0,0,0,0.5); 
+    // .popup_container
+    &_container{
+        position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+        min-width:600px; min-height:300px; max-height:calc(100% - 120px);  overflow-y:scroll;
+        background-color:#fff; box-shadow: 3px 3px 12px rgba(44, 44, 44, 0.2);
+    }
+    //  .popup_head  
+    &_head{
+        padding:0 30px; height:60px; 
+        color:#fff; font-size:1.5em; font-weight:bold; line-height:60px;
+        background-color:$main-color; 
+        // 팝업창 닫기 버튼
+        .popup_close{
+            position:absolute; top:0; right:0; 
+            width:65px; height:65px; font-size:0; 
+            &:before, &:after{
+                display:inline-block;
+                width:1px; height:19px; transform:rotate(45deg);
+                background-color:#fff; content: "";
+            }
+            &:after{
+                position:relative; top:-9px; left: -10px;
+                width:19px; height:1px;
+            }
+        }
+    }
+    //  .popup_inner
+    &_inner{
+        padding:15px 30px; 
+        dfn{display:block; padding:8px 0; color:$main-color; text-align:right;}
+        .row{
+            border-top:1px solid #ddd; padding:10px; min-width:600px; 
+            &:first-of-type{border-top:3px solid #333;}
+        }
+        label{
+            display:inline-block; width:100px;
+            i{font-size:20px; color:$main-color;}
+        }
+        select,input{padding:10px; border-radius:5px;}
+        input{
+            background-color:#f1f1f1; color:#b8b8b8;
+            &[type="checkbox"]{width:18px; height:18px; vertical-align: middle; margin-right:10px;}
+            &[name="codeNum"], &[name="staffNum"]{width:30px;}
+            &[name*="Addr"]{width:280px;}
+            &[name="dtlAddr"]{display:block; margin: 10px 0 10px 100px;}
+            &:read-only{background-color:#e2e2e2;}
+            &:focus{color:#333;}
+        }
+        textarea{border:none; border-radius:5px; background-color:#f1f1f1;}
+    }
+    &_grid{
+        margin:12px 0; 
+        &_area{
+            .btn{display:inline-block; margin:5px 0; border:1px solid $border-color; border-radius:30px; padding:5px 12px;}
+        }
+    }
+    //  .btn
+    .btn{
+        &.confirm,&.fill{width:100%; color: #fff; background-color:$main-color;}
+        &.stroke, &.fill{width:calc(50% - 16px);}
+    }
+}
