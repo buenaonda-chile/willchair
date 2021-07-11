@@ -185,7 +185,6 @@
   padding: 25px;
   height: 100vh;
   max-height: 100vh;
-  font-weight: 700;
   background-color: #FCFAF8;
 }
 
@@ -259,6 +258,7 @@
 .main_summary dt {
   margin-bottom: 24px;
   font-size: 1.114em;
+  font-weight:bold;
   color: #E98B73;
 }
 
@@ -573,6 +573,8 @@
   left: 0;
   width: 100%;
   height: 100%;
+  visibility: hidden;
+  opacity: 0;
   font-size: 0.9em;
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -721,5 +723,19 @@
   border: 1px solid #a8a8a8;
   border-radius: 30px;
   padding: 5px 12px;
+}
+
+/* 추가 */
+.popup.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.wj-flexgrid .wj-cell .wj-cell-maker {
+	width:80%;
+	height:85%; 
+	padding:0px;
+	margin-top:2px;
 }
 /*# sourceMappingURL=common.css.map */

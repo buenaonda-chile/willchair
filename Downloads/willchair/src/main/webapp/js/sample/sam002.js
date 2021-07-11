@@ -48,6 +48,7 @@ var edat = new wijmo.input.InputDate("#searchDtTo");	//교육종료 일자
 		columns: columnsDefinition
 	});
 
+    refreshPaging(cv.totalItemCount, 1, flexGrid, "wijmoGrid")
 }
 
 $(document.body).ready(function() {

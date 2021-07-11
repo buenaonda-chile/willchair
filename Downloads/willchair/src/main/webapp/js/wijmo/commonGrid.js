@@ -161,7 +161,7 @@ var commonGridInit = function(flexGrid, cv ,filter) {
 
 	///페이징 html 페이지에서 <div id='thePager'></div> 코드를 페이징해야될 자리에 추가해야함.	
 	 cv.pageSize = 100;
-	 new wijmo.input.CollectionViewNavigator('#thePager', {
+	 new wijmo.input.CollectionViewNavigator('#wijmoGridPager', {
 	 	byPage: true,
 	 	headerFormat: 'Page {currentPage:n0} of {pageCount:n0}',
 	 	cv: cv
@@ -230,7 +230,7 @@ var zoomOut = function($grid, flexGrid) {
 var transExcel = function(flexGrid, fileName) {
 
 	wijmo.grid.xlsx.FlexGridXlsxConverter.saveAsync(flexGrid,
-		{ includeColumnHeaders: true },
+		{ includeColumnHeaders: true, includeRowHeaders: true },
 		fileName,
 		function(base64) {
 			// user can access the base64 string in this callback.

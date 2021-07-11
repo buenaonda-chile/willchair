@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="/wijmo/styles/custom.css"/>
     <link rel="stylesheet" href="/wijmo/styles/wijmo.css"/>
 
+    <!-- Wijmo 배포라이선스키 적용 (배포 시 필요) -->
+    <!-- <script>
+    wijmo.setLicenseKey(**'your license key goes here...'**);
+    </script> -->
+
     <!-- wijmo js -->
     <script type="text/javascript" src="/wijmo/controls/wijmo.min.js"></script>
     <script type="text/javascript" src="/wijmo/controls/wijmo.grid.min.js"></script>
@@ -27,5 +32,7 @@
     <script type="text/javascript" src="/wijmo/controls/wijmo.grid.filter.min.js"></script>
     <script type="text/javascript" src="/wijmo/controls/cultures/wijmo.culture.ko.min.js"></script>
     <script type="text/javascript" src="/wijmo/controls/jszip.min.js"></script>
+    <script type="text/javascript" src="/wijmo/controls/wijmo.grid.cellmaker.min.js"></script>
     <script type="text/javascript" src="/js/wijmo/commonWijmo.js"></script>
+    <script type="text/javascript" src="/wijmo/controls/wijmo.nav.min.js"></script>
     <!--  -->
