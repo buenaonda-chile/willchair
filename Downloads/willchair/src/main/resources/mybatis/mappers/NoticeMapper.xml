@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.willchair.Mapper.NoticeMapper">
+
+    <select id="getTotalNotice" resultType="Integer">
+		select count(*) from web.notice
+    </select>
+
+	<select id="getTotalActive" resultType="Integer">
+		select count(*) from web.notice where notice_flag = 'Y'
+	</select>	
+
+	<select id="getTotalActiveN" resultType="Integer">
+		select count(*) from web.notice where notice_flag = 'N'
+	</select>	
+
+    <select id="getNoticeList" parameterType="hashMap" resultType="NoticeVo">
+		select index,
+                category,
+                notice_flag,
+                title,
+                content,
+				cret_id,
+				cret_time
+		from web.notice
+		where 1=1
+		<if test="inq != null">
+			AND 
+			<choose>
+				<when test="con == 'name'">
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						sido_name LIKE '%' || #{item} || '%'
+					</foreach>
+				</when>
+				<when test="con == 'clusterName'">
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						cluster_name LIKE '%' || #{item} || '%'
+					</foreach>
+				</when>
+				<when test="con == 'active'">
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						active_flag LIKE '%' || #{item} || '%'
+					</foreach>
+				</when>
+				<otherwise>
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						sido_name LIKE '%' || #{item} || '%'
+						or cluster_name LIKE '%' || #{item} || '%'
+						or active_flag LIKE '%' || #{item} || '%'
+					</foreach>
+				</otherwise>
+			</choose>
+		</if>
+		order by index
+	</select>
+
+	<insert id="saveNewNotice" parameterType="hashMap">
+		INSERT INTO web.notice
+			( title
+			   , category
+			   , content
+			   , cret_time
+			   , cret_id
+			)VALUES(
+				#{title}
+			   , #{category}
+			   , #{content}
+			   , LOCALTIMESTAMP(0)
+			   , #{cretId}
+			)
+	</insert>
+	
+	<update id="updateNotice" parameterType="hashMap">
+	</update>
+</mapper>

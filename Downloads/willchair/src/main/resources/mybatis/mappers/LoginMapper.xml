@@ -3,19 +3,19 @@
 
 <mapper namespace="com.willchair.Mapper.LoginMapper">
 
-	<select id="getPassword" parameterType="UserVo" resultType="UserVo">
+	<select id="getPassword" parameterType="StaffVo" resultType="StaffVo">
 		select
-			user_id,
-			user_pass,
+			staff_id,
+			staff_pass,
 			password_key
-		from public.user
-		where user_id = #{userId}
+		from web.staff
+		where staff_id = #{staffId}
 	</select>
 	
-	<update id="updateLoginTime" parameterType="UserVo">
-		update public.user set
+	<update id="updateLoginTime" parameterType="StaffVo">
+		update web.staff set
 		latest_dt = #{latestDt}::timestamp
-		where user_id = #{userId}
+		where staff_id = #{staffId}
 	</update>
 	
 </mapper>

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.willchair.Service.LoginService;
-import com.willchair.Vo.UserVo;
+import com.willchair.Vo.StaffVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,15 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/login")
 public class LoginController {
 	
 	@Autowired
     private LoginService loginService ;
     
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/loging", method = RequestMethod.POST)
 	@ResponseBody
-    public String login(@ModelAttribute UserVo vo, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+    public String loging(@ModelAttribute StaffVo vo, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		
 		String returnVal = "";
 		String autoLogin = request.getParameter("autoLogin");
@@ -42,13 +41,13 @@ public class LoginController {
                 loginService.updateLoginTime(vo);
                 
                 if(autoLogin.equals("on")) {
-                	Cookie cookie = new Cookie("user_id", vo.getUserId());
+                	Cookie cookie = new Cookie("staff_id", vo.getStaffId());
             		cookie.setMaxAge(60*60*24*7);
             		cookie.setPath("/");
             		response.addCookie(cookie);
                 }
                 
-                returnVal = "/user/userinfo";
+                returnVal = "/user/staff";
                 break;
         }
 		
@@ -59,16 +58,15 @@ public class LoginController {
     public String autoLogin(String id, HttpServletRequest  request, HttpServletResponse response) throws Exception {
         loginService.autoLogin(id, request);
         return "user";
-
     }
 	
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(@ModelAttribute UserVo vo, HttpServletRequest  request, HttpServletResponse response) throws Exception {  
+    public String logout(@ModelAttribute StaffVo vo, HttpServletRequest  request, HttpServletResponse response) throws Exception {  
         Cookie[] cookies = request.getCookies();
         if(cookies != null){
             for(Cookie tmpCookie : cookies){
-                if(tmpCookie.getName().equals("user_id")){
+                if(tmpCookie.getName().equals("staff_id")){
                     tmpCookie.setMaxAge(0);
                     tmpCookie.setPath("/");
                     response.addCookie(tmpCookie);

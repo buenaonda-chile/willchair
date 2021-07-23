@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.willchair.Mapper.CommentMapper">
+
+    <select id="getTotalComment" resultType="Integer">
+		select count(*) from app.comment_line
+	</select>
+
+	<select id="getTotalCommentY" resultType="Integer">
+		select count(*) from app.comment_line where active_flag = 'Y'
+	</select>
+
+	<select id="getTotalCommentN" resultType="Integer">
+		select count(*) from app.comment_line where active_flag = 'N'
+	</select>
+
+	<select id="getCommentList" parameterType="hashMap" resultType="CommentVo">
+		select a.comment_idx,
+                a.comment_addidx,
+                a.userid,
+                b.usernickname,
+                a.body_text,
+                a.cret_time,
+                a.ch_time,
+                a.del_time,
+                a.img_path,
+                a.img_path_flag,
+                a.active_flag
+		from app.comment_line a 
+		    join app.usertable b
+		    on a.userid = b.id
+		where 1=1
+		<if test="inq != null">
+			AND 
+			<choose>
+				<when test="con == 'name'">
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						b.usernickname LIKE '%' || #{item} || '%'
+					</foreach>
+				</when>
+				<when test="con == 'id'">
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						a.userid LIKE '%' || #{item} || '%'
+					</foreach>
+				</when>
+				<otherwise>
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						b.usernickname LIKE '%' || #{item} || '%'
+					</foreach>
+				</otherwise>
+			</choose>
+		</if>
+			AND a.cret_time::date between #{searchDtFr}::date and #{searchDtTo}::date
+		order by cret_time 
+	</select>
+	
+	<update id="updateComment" parameterType="hashMap">
+		UPDATE app.comment_line SET 
+		   active_flag=#{activeFlag} 
+		WHERE comment_idx=#{id}::integer
+	</update>
+</mapper>

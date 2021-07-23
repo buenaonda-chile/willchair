@@ -1,11 +1,11 @@
 package com.willchair.Mapper;
 
-import com.willchair.Vo.UserVo;
+import com.willchair.Vo.StaffVo;
 
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface LoginMapper {
-    public UserVo getPassword(UserVo vo);
-    public void updateLoginTime(UserVo vo);
+    public StaffVo getPassword(StaffVo vo);
+    public void updateLoginTime(StaffVo vo);
 }

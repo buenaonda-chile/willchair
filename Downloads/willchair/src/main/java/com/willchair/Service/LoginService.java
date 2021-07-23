@@ -2,13 +2,13 @@ package com.willchair.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.willchair.Vo.UserVo;
+import com.willchair.Vo.StaffVo;
 
 public interface LoginService {
     
-    public String getPasswordCheck(UserVo vo, HttpServletRequest request);
+    public String getPasswordCheck(StaffVo vo, HttpServletRequest request);
 	
-	public void updateLoginTime(UserVo vo);
+	public void updateLoginTime(StaffVo vo);
 	
 	public void autoLogin(String id, HttpServletRequest request);
 
