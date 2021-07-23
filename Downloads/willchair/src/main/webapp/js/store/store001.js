@@ -469,7 +469,7 @@ function _convertHeaderToBinding(header) {
 
 //엑셀 업로드 저장
 function saveGrid(){
-    if(confirm("저장 하시겠습니까?")){
+    if(confirm("저장 하시겠습니까?\n데이터가 많을시 시간이 지연 될수있습니다.")){
         $('#loading-image').show();
         var item  = excelGrid.rows;
         var rows = []; 
@@ -567,4 +567,5 @@ $(document.body).ready(function() {
     loadGridStoreList('init');  	//그리드 초기화
     $('#data').addClass("current");
     $('#store').addClass("current");
+    document.addEventListener('keydown', enterkey);
 });

@@ -205,7 +205,7 @@
                         <p class="terms">
                             <a href="/locateTerms" target="_blank">위치기반 서비스 이용약관 |</a>
                             <a href="/terms" target="_blank">서비스 이용약관 |</a>
-                            <a href="/personalTerms" target="_blank">개인정보 처리방침</a>
+                            <a href="/privacyTerms" target="_blank">개인정보 처리방침</a>
                         </p>
                         <dl>
                             <dt>대표자</dt>

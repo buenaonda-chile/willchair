@@ -52,24 +52,68 @@ var getTerm  = function(){
 $(document.body).ready(function() {   
     $('#term').addClass("current");
 	$('#termservice').addClass("current");
-    getTerm();
+    getTerm();   
 	ClassicEditor
-	.create(document.querySelector('#content'), {
-		ckfinder: {
-			uploadUrl:'/ck/fileupload'	
-		},
-		language: {ui: 'ko', content: 'ko'},
-		alignment: {
-			options: ['left','center','right']
-		}
-	})
-	.then( editor => {
-		console.log('Editor was initialized', editor);
-		window.editor = editor;
-        editor.setData(termContent);
-	})
-	.catch(error=>{
-		console.error(error);
-	});
-   
+				.create( document.querySelector( '#content' ), {
+					
+				toolbar: {
+					items: [
+						'heading',
+						'|',
+						'bold',
+						'italic',
+						'link',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'outdent',
+						'indent',
+						'|',
+						'blockQuote',
+						'insertTable',
+						'undo',
+						'redo',
+						'fontColor',
+						'fontBackgroundColor',
+						'fontSize',
+						'underline',
+						'specialCharacters',
+						'horizontalLine',
+						'htmlEmbed'
+					]
+				},
+				language: 'ko',
+				image: {
+					toolbar: [
+						'imageTextAlternative',
+						'imageStyle:inline',
+						'imageStyle:block',
+						'imageStyle:side'
+					]
+				},
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+				},
+					licenseKey: '',
+					
+					
+					
+				} )
+				.then( editor => {
+					window.editor = editor;
+					editor.setData(termContent);
+					
+					
+					
+				} )
+				.catch( error => {
+					console.error( 'Oops, something went wrong!' );
+					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+					console.warn( 'Build id: eed83e2ex4oz-pejoxvy7ffif' );
+					console.error( error );
+				} );
 });

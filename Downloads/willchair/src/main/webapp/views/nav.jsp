@@ -9,7 +9,7 @@
             <li>
                 <a href="/comment/commentinfo" class="dept1 content" id="contents">콘텐츠관리</a>
                 <ul class="dept2">
-                    <li><a href="/notice/noticeInfo" id="notice">공지관리</a></li>
+                    <%-- <li><a href="/notice/noticeInfo" id="notice">공지관리</a></li> --%>
                     <li><a id="comment" href="/comment/commentinfo">댓글관리</a></li>
                 </ul>
             </li>
@@ -27,15 +27,15 @@
                 <a href="/term/termservice" class="dept1 terms" id="term">약관관리</a>
                 <ul class="dept2">
                     <li><a id="termservice" href="/term/termservice">이용약관</a></li>
-                    <li><a id="termlocate" href="#">위치기반서비스약관</a></li>
-                    <li><a id="termprivate" href="#">개인정보취급방침</a></li>
+                    <li><a id="termlocate" href="/term/termlocate">위치기반서비스약관</a></li>
+                    <li><a id="termprivate" href="/term/termprivate">개인정보취급방침</a></li>
                 </ul>
             </li>
         </ul>
         <div class="terms_area">
             <a href="/terms" target="_blank">이용약관</a>
             <a href="/locateTerms" target="_blank">위치기반서비스약관</a>
-            <a href="/personalTerms" target="_blank">개인정보취급방침</a>
+            <a href="/privacyTerms" target="_blank">개인정보취급방침</a>
         </div>
         <a href="javascript:_logOut()" class="main_out">로그아웃</a>
 </aside>

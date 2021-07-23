@@ -10,5 +10,13 @@ public interface TermMapper {
     public String getTermService();
     
 	public void saveTermService(HashMap<String,String> params);
+    
+    public String getTermLocate();
+    
+	public void saveTermLocate(HashMap<String,String> params);
+
+    public String getTermPrivate();
+    
+	public void saveTermPrivate(HashMap<String,String> params);
 
 }

@@ -231,6 +231,7 @@ function updateLocation(){
 $(document.body).ready(function() {   
 	srcDatInit();
     loadGridCommentList('init');  	//그리드 초기화
-    $('#content').addClass("current");
+    $('#contents').addClass("current");
 	$('#comment').addClass("current");
+	document.addEventListener('keydown', enterkey);
 });

@@ -16,4 +16,30 @@
         where no = 1
 	</update>
 
+	<select id="getTermLocate" resultType="String">
+		select contents from web.terms where no = 3
+	</select>	
+
+    <update id="saveTermLocate" parameterType="hashMap">
+		update web.terms set
+			     subject = '위치기반서비스약관'
+			   , contents = #{content}
+			   , updt_id = 'testUser'
+			   , updt_dt = LOCALTIMESTAMP(0)
+        where no = 3
+	</update>
+
+	<select id="getTermPrivate" resultType="String">
+		select contents from web.terms where no = 5
+	</select>	
+
+    <update id="saveTermPrivate" parameterType="hashMap">
+		update web.terms set
+			     subject = '개인정보취급방침'
+			   , contents = #{content}
+			   , updt_id = 'testUser'
+			   , updt_dt = LOCALTIMESTAMP(0)
+        where no = 5
+	</update>
+
 </mapper>

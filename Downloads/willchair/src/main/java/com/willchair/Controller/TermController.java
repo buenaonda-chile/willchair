@@ -23,7 +23,20 @@ public class TermController {
 
     @RequestMapping(value = "/termservice", method = {RequestMethod.POST , RequestMethod.GET})
     public String termService(HttpServletRequest req, HttpServletResponse res) {  
-        return "term";
+
+        return "term_service_editor";
+    }
+
+    @RequestMapping(value = "/termprivate", method = {RequestMethod.POST , RequestMethod.GET})
+    public String termPrivate(HttpServletRequest req, HttpServletResponse res) {  
+
+        return "term_private_editor";
+    }
+
+    @RequestMapping(value = "/termlocate", method = {RequestMethod.POST , RequestMethod.GET})
+    public String termLocate(HttpServletRequest req, HttpServletResponse res) {  
+
+        return "term_locate_editor";
     }
 
     /**약관 등록 */
@@ -37,5 +50,31 @@ public class TermController {
     @ResponseBody
     public String getTermService(){   	
     	return termService.getTermService();
+    }
+
+    /**약관 등록 */
+    @RequestMapping(value = "/saveTermLocate")
+    @ResponseBody
+    public void saveTermLocate(@RequestParam HashMap<String,String> params){  
+        termService.saveTermLocate(params);
+    }
+
+    @RequestMapping(value = "/getTermLocate")
+    @ResponseBody
+    public String getTermLocate(){   	
+    	return termService.getTermLocate();
+    }
+
+    /**약관 등록 */
+    @RequestMapping(value = "/saveTermPrivate")
+    @ResponseBody
+    public void saveTermPrivate(@RequestParam HashMap<String,String> params){  
+        termService.saveTermPrivate(params);
+    }
+
+    @RequestMapping(value = "/getTermPrivate")
+    @ResponseBody
+    public String getTermPrivate(){   	
+    	return termService.getTermPrivate();
     }
 }

@@ -24,4 +24,24 @@ public class TermServiceImpl implements TermService{
         termMapper.saveTermService(params);
     }
 
+    @Override
+    public String getTermLocate() {
+        return termMapper.getTermLocate();
+    }
+
+    @Override
+    public void saveTermLocate(HashMap<String,String> params) {
+        termMapper.saveTermLocate(params);
+    }
+
+    @Override
+    public String getTermPrivate() {
+        return termMapper.getTermPrivate();
+    }
+
+    @Override
+    public void saveTermPrivate(HashMap<String,String> params) {
+        termMapper.saveTermPrivate(params);
+    }
+
 }

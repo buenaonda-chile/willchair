@@ -26,7 +26,7 @@ var loactionColumns;
 
 function enterkey() {
     if (window.event.keyCode == 13) {
-    	getStaffList();
+    	getLocationList();
     }
 }
 
@@ -192,4 +192,5 @@ $(document.body).ready(function() {
     loadGridLocationList('init');  	//그리드 초기화
     $('#data').addClass("current");
 	$('#location').addClass("current");
+	document.addEventListener('keydown', enterkey);
 });
