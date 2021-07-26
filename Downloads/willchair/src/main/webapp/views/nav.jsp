@@ -9,7 +9,7 @@
             <li>
                 <a href="/comment/commentinfo" class="dept1 content" id="contents">콘텐츠관리</a>
                 <ul class="dept2">
-                    <%-- <li><a href="/notice/noticeInfo" id="notice">공지관리</a></li> --%>
+                    <li><a href="/notice/noticeInfo" id="notice">공지관리</a></li>
                     <li><a id="comment" href="/comment/commentinfo">댓글관리</a></li>
                 </ul>
             </li>

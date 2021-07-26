@@ -32,6 +32,7 @@ var userColumns;
 function enterkey() {
     if (window.event.keyCode == 13) {
     	getStaffList();
+        getUserList();
     }
 }
 
@@ -554,17 +555,9 @@ function exportUserExcel(){
 	 );
 }
 
-$(document.body).ready(function() {
-    
-    $.when(
-		$.getScript('/js/wijmo/commonGrid.js'),
-		$.getScript('/js/wijmo/commonInput.js')
-	).done(function() {
-        
-        loadGridStaffList('init');  	//그리드 초기화
-        loadGridUserList('init');
-        $('#member').addClass("current");
-        new wijmo.nav.TabPanel("#theTabPanel");
-    });
-
+$(document.body).ready(function() {           
+    loadGridStaffList('init');  	//그리드 초기화
+    loadGridUserList('init');
+    $('#member').addClass("current");
+    new wijmo.nav.TabPanel("#theTabPanel");
 });

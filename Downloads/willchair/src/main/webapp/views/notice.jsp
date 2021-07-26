@@ -5,7 +5,8 @@
 <html lang="ko">
 <head>
     <%@ include file="header.jsp" %>
-    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+    <script src="/ckeditor5/build/ckeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="/ckeditor5/sample/styles.css">
 </head>
 <body>
     <div class="main_wrap">
@@ -78,7 +79,7 @@
     </div>
      <!-- 팝업 -->
     <div class="popup" id="new_notice">
-        <div class="popup_container" style="width:800px">
+        <div class="popup_container" style="width:1200px;">
             <div class="popup_head">
                 <p class="popup_title">공지추가</p>
                 <button type="button" class="popup_close" onClick="closePop();">x</button>
@@ -107,12 +108,12 @@
                             <tr>
                                 <th><label for="title">제목<i>*</i></label></th>
                                 <td>
-                                    <input type="text" id="title" name="title">
+                                    <input type="text" id="title" name="title" style="width:800px;">
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="content" style="vertical-align:top;">내용</label></th>
-                                <td>
+                                <td class="editor">
                                    <textarea name="content" id="content"></textarea>
                                 </td>
                             </tr>
@@ -127,7 +128,7 @@
     </div>
     <!-- 팝업 : 지역 정보 수정 -->
     <div class="popup" id="modify_location">
-        <div class="popup_container">
+        <div class="popup_container" style="width:1100px;">
             <div class="popup_head">
                 <p class="popup_title">정보수정</p>
                 <button type="button" class="popup_close" onClick="closePop()">x</button>

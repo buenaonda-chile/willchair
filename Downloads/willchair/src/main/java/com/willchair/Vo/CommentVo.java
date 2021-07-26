@@ -9,6 +9,11 @@ public class CommentVo {
     private String commentIdx;
     private String commentAddidx;
     private String userId;
+    private String storeName;
+    private String storeLocName;
+    private String firstTypeName;
+    private String sidoName;
+    private String sigugunName;
     private String usernickname;
     private String bodyText;
     private String cretTime;

@@ -343,14 +343,6 @@ body[ data-editor='InlineEditor'] .collaboration-demo__row {
 }
 
 /* --------- SAMPLE GENERIC STYLES (not related to CKEditor) ------------------------------------------------------- */
-body, html {
-	padding: 0;
-	margin: 0;
-
-	font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	font-size: 16px;
-	line-height: 1.5;
-}
 
 body {
 	height: 100%;
@@ -433,7 +425,7 @@ main .message h2 {
 	font-size: 2em;
 }
 
-.centered {
+.editor .centered {
 	/* Hide overlapping comments. */
 	overflow: hidden;
 	max-width: var(--ck-sample-container-width);
@@ -441,12 +433,12 @@ main .message h2 {
 	padding: 0 var(--ck-sample-base-spacing);
 }
 
-.row {
+.editor .row {
 	display: flex;
 	position: relative;
 }
 
-.main_content .btn {
+.editor .btn {
 	cursor: pointer;
 	padding: 8px 16px;
 	font-size: 1rem;
@@ -459,19 +451,19 @@ main .message h2 {
 	display: inline-block;
 }
 
-.btn--tiny {
+.editor .btn--tiny {
 	padding: 6px 12px;
 	font-size: .8rem;
 }
 
-footer {
+.editor footer {
 	margin: calc(2*var(--ck-sample-base-spacing)) var(--ck-sample-base-spacing);
 	font-size: .8em;
 	text-align: center;
 	color: rgba(0,0,0,.4);
 }
 
-.main_content li, p, h2{padding:4px;}
+.editor li, p, h2{padding:4px;}
 
 /* --------- RWD --------------------------------------------------------------------------------------------------- */
 @media screen and ( max-width: 800px ) {

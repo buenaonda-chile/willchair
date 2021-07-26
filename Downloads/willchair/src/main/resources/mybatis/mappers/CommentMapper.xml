@@ -17,19 +17,26 @@
 
 	<select id="getCommentList" parameterType="hashMap" resultType="CommentVo">
 		select a.comment_idx,
-                a.comment_addidx,
-                a.userid,
-                b.usernickname,
-                a.body_text,
-                a.cret_time,
-                a.ch_time,
-                a.del_time,
-                a.img_path,
-                a.img_path_flag,
-                a.active_flag
-		from app.comment_line a 
-		    join app.usertable b
-		    on a.userid = b.id
+			a.comment_addidx,
+			c.store_name,
+			c.store_loc_name,
+			c.first_type_name,
+			c.sido_name,
+			c.sigugun_name,
+			a.userid,
+			b.usernickname,
+			a.body_text,
+			a.cret_time,
+			a.ch_time,
+			a.del_time,
+			a.img_path,
+			a.img_path_flag,
+			a.active_flag
+		from app.comment_line a
+		join app.usertable b
+		on a.userid = b.id
+		left join app.storeinfo c
+		on a.comment_addidx = c.storeidx
 		where 1=1
 		<if test="inq != null">
 			AND 
@@ -46,16 +53,24 @@
 						a.userid LIKE '%' || #{item} || '%'
 					</foreach>
 				</when>
+				<when test="con == 'storename'">
+					<foreach collection="inq" item="item"
+						index="index" open="(" close=")" separator="or">
+						c.store_name LIKE '%' || #{item} || '%'
+					</foreach>
+				</when>
 				<otherwise>
 					<foreach collection="inq" item="item"
 						index="index" open="(" close=")" separator="or">
 						b.usernickname LIKE '%' || #{item} || '%'
+						or a.userid LIKE '%' || #{item} || '%'
+						or c.store_name LIKE '%' || #{item} || '%'
 					</foreach>
 				</otherwise>
 			</choose>
 		</if>
 			AND a.cret_time::date between #{searchDtFr}::date and #{searchDtTo}::date
-		order by cret_time 
+		order by cret_time desc
 	</select>
 	
 	<update id="updateComment" parameterType="hashMap">

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.willchair.Service.FileService;
 import com.willchair.Service.NoticeService;
 import com.willchair.Vo.NoticeVo;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/notice")
@@ -22,6 +24,9 @@ public class NoticeController {
     
     @Autowired
     NoticeService noticeService;
+
+    @Autowired
+    FileService fileService;
 
     @RequestMapping(value = "/noticeInfo", method = {RequestMethod.POST , RequestMethod.GET})
     public String moveLocation(HttpServletRequest req, HttpServletResponse res) {
@@ -62,5 +67,12 @@ public class NoticeController {
     @ResponseBody
     public void updateNotice(@RequestParam HashMap<String,String> params){
         noticeService.updateNotice(params);
-    }    
+    }
+
+    @RequestMapping(value = "/upload")
+    @ResponseBody
+    public String upload( MultipartFile file , @RequestParam HashMap<String,String> params) throws Exception{
+        System.out.println("박준호체크" + file);
+        return fileService.uploadFile(file, params);
+    }
 }

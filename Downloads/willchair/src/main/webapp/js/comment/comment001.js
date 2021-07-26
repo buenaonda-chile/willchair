@@ -48,7 +48,12 @@ function loadGridCommentList(type, result){
 		   
 		   commentColumns = [
 		      { binding: 'commentIdx', header: '댓글번호', isReadOnly: true, width: 100 , align:"center" },
-              { binding: 'commentAddidx', header: '댓글추가번호', isReadOnly: true, width: 150 , align:"center" },
+              { binding: 'commentAddidx', header: '가게번호', isReadOnly: true, width: 150 , align:"center" },
+			  { binding: 'storeName', header: '가게이름', isReadOnly: true, width: 150 , align:"center" },
+			  { binding: 'storeLocName', header: '가게지점명', isReadOnly: true, width: 150 , align:"center" },
+			  { binding: 'firstTypeName', header: '상권업종대분류명', isReadOnly: true, width: 150 , align:"center" },
+			  { binding: 'sidoName', header: '시도명', isReadOnly: true, width: 150 , align:"center" },
+			  { binding: 'sigugunName', header: '시군구명', isReadOnly: true, width: 150 , align:"center" },
               { binding: 'userId', header: '아이디', isReadOnly: true, width: 100 , align:"center" },
 			  { binding: 'usernickname', header: '닉네임', isReadOnly: true, width: 100 , align:"center" },
               { binding: 'bodyText', header: '댓글내용', isReadOnly: true, width: 120 , align:"center" },

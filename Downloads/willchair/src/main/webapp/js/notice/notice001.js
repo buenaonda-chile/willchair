@@ -166,9 +166,8 @@ function getNoticeList(){
 //팝업 오픈
 function showPop(pop){
 	if(pop == "new_notice") {
-
+		editor.setData('');
 		newNoticeForm.title.value = "";
-		editor.setData('안녕하세요');
 
 	}else if(pop == "modify_notice"){
 		
@@ -187,25 +186,127 @@ function closePop(){
 	$('.popup').removeClass('is-visible');
 }
 
+//이미지업로드
+class UploadAdapter {
+    constructor(loader) {
+        this.loader = loader;
+    }
+
+    upload() {
+        return this.loader.file.then( file => new Promise(((resolve, reject) => {
+            this._initRequest();
+            this._initListeners( resolve, reject, file );
+            this._sendRequest( file );
+        })))
+    }
+
+    _initRequest() {
+        const xhr = this.xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:8080/notice/upload', true);
+        xhr.responseType = 'json';
+    }
+
+    _initListeners(resolve, reject, file) {
+        const xhr = this.xhr;
+        const loader = this.loader;
+        const genericErrorText = '파일을 업로드 할 수 없습니다.'
+
+        xhr.addEventListener('error', () => {reject(genericErrorText)})
+        xhr.addEventListener('abort', () => reject())
+        xhr.addEventListener('load', () => {
+            const response = xhr.response
+            if(!response || response.error) {
+                return reject( response && response.error ? response.error.message : genericErrorText );
+            }
+
+            resolve({
+                default: response.url //업로드된 파일 주소
+            })
+        })
+    }
+
+    _sendRequest(file) {
+        const data = new FormData()
+        data.append('upload',file)
+        this.xhr.send(data)
+    }
+}
+
+function MyCustomUploadAdapterPlugin(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+        return new UploadAdapter(loader)
+    }
+}
+
 $(document.body).ready(function() {   
     loadGridNoticeList('init');  	//그리드 초기화
     $('#content').addClass("current");
 	$('#notice').addClass("current");
 	ClassicEditor
-	.create(document.querySelector('#content'), {
-		ckfinder: {
-			uploadUrl:'/ck/fileupload'	
-		},
-		language: {ui: 'ko', content: 'ko'},
-		alignment: {
-			options: ['left','center','right']
-		}
-	})
-	.then( editor => {
-		console.log('Editor was initialized', editor);
-		window.editor = editor;
-	})
-	.catch(error=>{
-		console.error(error);
-	});
+				.create( document.querySelector( '#content' ), {
+					
+				toolbar: {
+					items: [
+						'heading',
+						'|',
+						'bold',
+						'italic',
+						'link',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'outdent',
+						'indent',
+						'|',
+						'imageUpload',
+						'blockQuote',
+						'insertTable',
+						'mediaEmbed',
+						'undo',
+						'redo',
+						'htmlEmbed',
+						'horizontalLine',
+						'fontSize',
+						'fontColor',
+						'fontBackgroundColor',
+						'alignment',
+					]
+				},
+				language: 'ko',
+				image: {
+					toolbar: [
+						'imageTextAlternative',
+						'imageStyle:inline',
+						'imageStyle:block',
+						'imageStyle:side'
+					]
+				},
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+				},
+				extraPlugins: [MyCustomUploadAdapterPlugin],
+				licenseKey: '',
+					
+					
+					
+				} )
+				.then( editor => {
+					window.editor = editor;
+					editor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{
+						return new UploadAdapter(loader);
+					};
+					
+					
+					
+				} )
+				.catch( error => {
+					console.error( 'Oops, something went wrong!' );
+					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+					console.warn( 'Build id: d7cnhvir6n7w-iy62in32ou41' );
+					console.error( error );
+				} );
 });

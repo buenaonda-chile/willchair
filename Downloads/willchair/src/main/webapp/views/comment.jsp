@@ -54,6 +54,7 @@
                                     <option value="all" selected="selected">전체</option>
                                     <option value="name">닉네임</option>
                                     <option value="id">아이디</option>
+                                    <option value="storename">가게이름</option>
                                 </select>
                                 <label for="inq"></label>
                                 <input type="text" id="commentInq" placeholder=",로 다중검색 가능">
